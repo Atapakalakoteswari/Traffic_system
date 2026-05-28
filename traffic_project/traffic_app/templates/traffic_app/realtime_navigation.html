@@ -1,0 +1,85 @@
+{% extends 'traffic_app/base.html' %}
+
+{% block content %}
+<div class="navigation-container">
+    <div class="left-panel">
+        <div class="form-panel">
+            <h4>Route Finder</h4>
+            <div class="mb-3">
+                <label class="form-label">Start Location</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-location-dot"></i></span>
+                    <input type="text" 
+                           class="form-control" 
+                           id="start-location" 
+                           placeholder="Search start location..."
+                           list="location-suggestions"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Destination</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-location-dot"></i></span>
+                    <input type="text" 
+                           class="form-control" 
+                           id="end-location" 
+                           placeholder="Search destination..."
+                           list="location-suggestions"
+                           autocomplete="off">
+                </div>
+            </div>
+            
+            <datalist id="location-suggestions">
+                <option value="Palasa, Andhra Pradesh">
+                <option value="Srikakulam, Andhra Pradesh">
+                <option value="Visakhapatnam, Andhra Pradesh">
+                <option value="Mumbai, Maharashtra">
+                <option value="Delhi">
+                <option value="Bangalore, Karnataka">
+                <option value="Hyderabad, Telangana">
+                <option value="Ahmedabad, Gujarat">
+                <option value="Chennai, Tamil Nadu">
+                <option value="Kolkata, West Bengal">
+                <option value="Pune, Maharashtra">
+                <option value="Jaipur, Rajasthan">
+            </datalist>
+            <button class="btn-custom w-100" id="find-btn">Find Routes</button>
+            
+            <div id="loading" class="loading">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Calculating best routes with real-time traffic...</p>
+            </div>
+            
+            <div class="info-box mt-3">
+                <i class="fas fa-info-circle"></i>
+                <small>Routes are calculated with current traffic conditions based on real-time data from OSRM.</small>
+            </div>
+        </div>
+        
+        <div class="routes-panel" id="routes-container" style="display: none;">
+            <h5>Route Options</h5>
+            <div id="routes-list"></div>
+        </div>
+    </div>
+    
+    <div class="right-panel">
+        <div class="map-panel">
+            <div id="map"></div>
+        </div>
+        
+        <div class="route-info-panel" id="route-info" style="display: none;">
+            <h5><i class="fas fa-info-circle"></i> Selected Route Details</h5>
+            <div id="route-details" class="mt-2"></div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+{% load static %}
+<script src="{% static 'js/realtime_navigation.js' %}"></script>
+{% endblock %}

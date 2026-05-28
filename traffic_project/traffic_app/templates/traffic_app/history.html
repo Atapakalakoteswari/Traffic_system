@@ -1,0 +1,73 @@
+{% extends 'traffic_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="card-custom" style="max-width: 1000px;">
+    <h2 class="text-center mb-4">Prediction History</h2>
+    <div class="table-responsive">
+        {% if predictions %}
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Date/Time</th>
+                    <th>Hour</th>
+                    <th>Weather</th>
+                    <th>Traffic Volume</th>
+                    <th>Congestion</th>
+                    <th>Travel Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pred in predictions %}
+                <tr>
+                    <td>{{ pred.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>{{ pred.hour }}:00</td>
+                    <td>{{ pred.weather }}</td>
+                    <td>{{ pred.traffic_volume }}</td>
+                    <td>
+                        <span class="badge" style="background-color: 
+                            {% if pred.predicted_congestion == 0 %}#28a745
+                            {% elif pred.predicted_congestion == 1 %}#ffc107
+                            {% elif pred.predicted_congestion == 2 %}#fd7e14
+                            {% else %}#dc3545{% endif %}">
+                            {{ pred.get_predicted_congestion_display }}
+                        </span>
+                    </td>
+                    <td>
+                        {% with time=pred.predicted_travel_time|floatformat:0 %}
+                            {% if time >= "60" %}
+                                {% with hours=time|add:"0" %}
+                                    {% widthratio hours 60 1 %}h 
+                                    {% with rem=hours|add:"0"|stringformat:"d" %}
+                                        {% if rem|length > 2 %}
+                                            {% with mins=rem|slice:"-2:" %}
+                                                {% if mins != "00" %}{{ mins }}min{% endif %}
+                                            {% endwith %}
+                                        {% elif time >= "60" %}
+                                            {% widthratio time|add:"0" 60 1 %}h
+                                        {% endif %}
+                                    {% endwith %}
+                                {% endwith %}
+                            {% else %}
+                                {{ time }} min
+                            {% endif %}
+                        {% endwith %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <p>No predictions yet. Make your first prediction!</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="text-center mt-3">
+        <a href="{% url 'predict' %}" class="btn-custom" style="text-decoration: none; display: inline-block; padding: 12px 30px;">
+            <i class="fas fa-plus"></i> Make New Prediction
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'traffic_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="fullscreen-bg" style="background-image: url('{% static 'images/traffic-bg.jpg' %}');">
+    <div class="hero-section">
+        <div class="center-button-container">
+            <h1 class="hero-title">Traffic Congestion Prediction System</h1>
+            <p class="hero-subtitle">Intelligent Route Recommendation</p>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'login' %}" class="center-btn">Get Started</a>
+            {% else %}
+                <a href="{% url 'predict' %}" class="center-btn">Check Traffic Now</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

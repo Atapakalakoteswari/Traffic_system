@@ -1,0 +1,75 @@
+{% extends 'traffic_app/base.html' %}
+
+{% block content %}
+<div class="card-custom">
+    <h2 class="text-center mb-4"> Traffic Prediction</h2>
+    <form method="POST" id="predictionForm">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <div class="location-input-group">
+                <i class="fas fa-search location-icon"></i>
+                <input type="text" 
+                       id="location" 
+                       name="location" 
+                       class="form-control" 
+                       placeholder="Search for a location"
+                       autocomplete="off"
+                       required>
+            </div>
+            <small class="text-muted">Enter city name or address</small>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Date & Time</label>
+            <div style="position: relative;">
+                <input type="datetime-local" 
+                       id="datetime" 
+                       name="datetime" 
+                       class="form-control" 
+                       required>
+            </div>
+            <small class="text-muted">Select date and time for prediction</small>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Weather Condition</label>
+            <select name="weather" id="weather" class="form-control" required>
+                <option value="Clear"> Clear Sky</option>
+                <option value="Cloudy"> Cloudy</option>
+                <option value="Rain"> Rain</option>
+                <option value="Fog">Fog</option>
+                <option value="Snow">Snow</option>
+            </select>
+        </div>
+        
+        <div class="d-grid">
+            <button type="submit" class="btn-custom">Predict Traffic Now</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const datetimeInput = document.getElementById('datetime');
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        datetimeInput.value = now.toISOString().slice(0, 16);
+        
+        const locationInput = document.getElementById('location');
+        const locations = [
+            "Srikakulam, Andhra Pradesh", "Palasa, Andhra Pradesh", "Delhi", "Bangalore, Karnataka", "Hyderabad, Telangana",
+            "Ahmedabad, Gujarat", "Chennai, Tamil Nadu","Visakhapatnam, Andhra Pradesh",
+        ];
+        
+        const datalist = document.createElement('datalist');
+        datalist.id = 'location-suggestions';
+        locations.forEach(location => {
+            const option = document.createElement('option');
+            option.value = location;
+            datalist.appendChild(option);
+        });
+        document.body.appendChild(datalist);
+        locationInput.setAttribute('list', 'location-suggestions');
+    });
+</script>
+{% endblock %}

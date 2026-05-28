@@ -1,0 +1,71 @@
+{% extends 'traffic_app/base.html' %}
+
+{% block content %}
+<div class="card-custom" style="max-width: 600px;">
+    <h2 class="text-center mb-4">Prediction Results</h2>
+    <div class="info-details">
+        <p><strong>Location:</strong> {{ location }}</p>
+        <p><strong>Date & Time:</strong> {{ datetime }}</p>
+        <p><strong>Weather:</strong> {{ prediction.weather }}</p>
+    </div>
+    <div class="text-center p-4 rounded" style="background: {{ congestion_color }}20; border: 2px solid {{ congestion_color }}; margin-top: 20px;">
+        <h3 class="mt-2" style="color: {{ congestion_color }}">{{ congestion_text }}</h3>
+        <p class="mb-0">Congestion Level: {{ congestion_level }}/3</p>
+    </div>
+    <div class="text-center mt-4">
+        <h4>Estimated Travel Time</h4>
+        {% with travel_time_min=travel_time|floatformat:0 %}
+            {% if travel_time_min >= 60 %}
+                {% with hours=travel_time_min|divisibleby:60 %}
+                    <p class="display-4">
+                        {% widthratio travel_time_min 60 1 %}
+                        {% with remaining=travel_time_min|add:"0"|stringformat:"d" %}
+                            {% if remaining|length > 2 %}
+                                {% with rem=remaining|slice:"-2:" %}
+                                    {% if rem != "00" %}
+                                        <small>h {{ rem }} min</small>
+                                    {% else %}
+                                        <small>h</small>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endif %}
+                        {% endwith %}
+                    </p>
+                {% endwith %}
+            {% else %}
+                <p class="display-4">{{ travel_time|floatformat:0 }} <small>minutes</small></p>
+            {% endif %}
+        {% endwith %}
+        <small>(for a 10km route in this area)</small>
+    </div>
+    <div class="alert alert-info mt-4">
+        <h5>Recommendation</h5>
+        {% if congestion_level == 0 %}
+            <p>Light traffic expected at {{ location }}. Enjoy your smooth journey!</p>
+        {% elif congestion_level == 1 %}
+            <p>Moderate traffic expected at {{ location }}. Allow extra 5-10 minutes.</p>
+        {% elif congestion_level == 2 %}
+            <p>Heavy traffic expected at {{ location }}. Consider alternative routes or delay travel.</p>
+        {% else %}
+            <p>Severe traffic expected at {{ location }}! Strongly recommend postponing travel or using public transport.</p>
+        {% endif %}
+    </div>
+    <div class="d-grid gap-2">
+        <a href="{% url 'predict' %}" class="btn-custom" style="text-align: center; text-decoration: none;">New Prediction</a>
+        <a href="{% url 'realtime_navigation' %}" class="btn-outline-primary" style="text-align: center; text-decoration: none;">Get Live Route</a>
+    </div>
+</div>
+
+<script>
+    // Format travel time display
+    document.addEventListener('DOMContentLoaded', function() {
+        const travelTimeElem = document.querySelector('.display-4');
+        if (travelTimeElem) {
+            const timeText = travelTimeElem.innerText;
+            if (timeText.includes('h')) {
+                travelTimeElem.innerHTML = travelTimeElem.innerHTML;
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'traffic_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="fullscreen-bg" style="background-image: url('{% static 'images/traffic-bg.jpg' %}');">
+    <div class="hero-section">
+        <div class="center-card">
+            <h2>About</h2>
+            <div class="about-content">
+                <p>This Traffic Congestion Prediction and Intelligent Route Recommendation System helps commuters to find the best routes based on real-time traffic conditions.</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Traffic Prediction</h3>
+                        <p>Predicts traffic congestion levels at various locations based on time, day type, and historical data.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-route"></i>
+                        <h3>Route Recommendation</h3>
+                        <p>Suggests optimal routes with real-time traffic levels to minimize travel time.</p>
+                    </div>
+                </div>
+                <p class="back"><a href="{% url 'index' %}">←Back</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
