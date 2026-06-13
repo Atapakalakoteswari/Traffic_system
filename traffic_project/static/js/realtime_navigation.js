@@ -114,9 +114,9 @@ function displayRoutes(routes) {
                 <div class="flex-grow-1">
                     <h6 class="mb-1">
                         ${route.name}
-                        ${route.congestion === 'High' ? '<span style="color: #dc3545; font-size: 12px;"> ⚠️ Heavy Traffic</span>' : ''}
-                        ${route.congestion === 'Medium' ? '<span style="color: #ffc107; font-size: 12px;"> ⚠️ Moderate Traffic</span>' : ''}
-                        ${route.congestion === 'Low' ? '<span style="color: #28a745; font-size: 12px;"> ✓ Light Traffic</span>' : ''}
+                        ${route.congestion === 'High' ? '<span style="color: #dc3545; font-size: 12px;">Heavy Traffic</span>' : ''}
+                        ${route.congestion === 'Medium' ? '<span style="color: #ffc107; font-size: 12px;">Moderate Traffic</span>' : ''}
+                        ${route.congestion === 'Low' ? '<span style="color: #28a745; font-size: 12px;">Light Traffic</span>' : ''}
                     </h6>
                     <small class="text-muted">
                         <i class="fas fa-road"></i> ${route.distance} km &nbsp;

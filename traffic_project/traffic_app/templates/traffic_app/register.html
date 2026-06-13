@@ -5,7 +5,7 @@
 <div class="fullscreen-bg" style="background-image: url('{% static 'images/traffic-bg.jpg' %}');">
     <div class="hero-section">
         <div class="auth-card">
-            <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+            <h2>Create Account</h2>
             <form method="post" class="auth-form">
                 {% csrf_token %}
                 {% for field in form %}
@@ -19,7 +19,7 @@
                 {% endfor %}
                 <button type="submit" class="auth-btn">Register</button>
             </form>
-            <p class="auth-link">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+            <p class="auth-link">Already have an account? <a href="{% url 'login' %}"><b>Login here</b></a></p>
             <p class="back"><a href="{% url 'index' %}">←Back</a></p>
         </div>
     </div>

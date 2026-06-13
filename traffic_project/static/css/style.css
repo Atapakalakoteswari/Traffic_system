@@ -120,9 +120,8 @@ body {
 }
 
 .center-card, .auth-card {
-    max-width: 600px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.95);
+    max-width: 700px;
+    margin: 100px;
     border-radius: 20px;
     padding: 2rem;
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
@@ -135,7 +134,7 @@ body {
 .auth-card h2, .center-card h2 {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: #333;
+    color: #f5f0f0;
 }
 
 .form-group {
@@ -1032,8 +1031,108 @@ input[type="datetime-local"] {
     text-align: center;
 }
 
-.back a{
+.back a {
     text-decoration: none;
-    color: #5666cd;
+    color: white;
 }
 
+
+/* Transparent card backgrounds */
+.about-content .center-card,
+.fullscreen-bg .hero-section .center-card,
+.auth-card,
+.register-card .auth-card,
+form .auth-card {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* About section - ALL TEXT WHITE */
+.about-content .center-card,
+.about-content .center-card * {
+    color: white !important;
+}
+
+/* About section heading */
+.about-content .center-card h2,
+.about-content .center-card h3 {
+    color: white !important;
+}
+
+/* About section paragraphs */
+.about-content .center-card p {
+    color: white !important;
+}
+
+/* About section feature boxes */
+.about-content .center-card .feature {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 10px !important;
+    padding: 1rem !important;
+}
+
+/* About section feature icons - WHITE */
+.about-content .center-card .feature i {
+    color: white !important;
+}
+
+/* About section feature headings and text */
+.about-content .center-card .feature h3,
+.about-content .center-card .feature p {
+    color: white !important;
+}
+
+/* About section back link */
+.about-content .center-card .back a {
+    color: white !important;
+    text-decoration: underline !important;
+}
+
+/* Login/Register section - Headings white */
+.auth-card h2,
+.auth-card h2 i {
+    color: white !important;
+}
+
+/* Login/Register section - Labels white */
+.auth-card label {
+    color: white !important;
+}
+
+/* Login/Register section - Text and links */
+.auth-card p,
+.auth-card .auth-link,
+.auth-card .auth-link a {
+    color: rgb(214, 207, 141) !important;
+}
+
+/* Login/Register section - Back link */
+.auth-card .back a {
+    color: white !important;
+}
+
+
+/* Form inputs - Keep readable */
+.auth-card input,
+.auth-card select,
+.about-content .center-card input,
+.about-content .center-card select {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #333 !important;
+}
+
+/* Form input labels - White */
+.auth-card .form-group label,
+.about-content .center-card .form-group label {
+    color: white !important;
+}
+
+/* Buttons - Keep original style */
+.auth-card .auth-btn,
+.about-content .center-card .auth-btn {
+    background: linear-gradient(135deg, #22402f, #1a3024) !important;
+    color: white !important;
+}
