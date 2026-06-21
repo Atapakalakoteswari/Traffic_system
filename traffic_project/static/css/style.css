@@ -1136,3 +1136,45 @@ form .auth-card {
     background: linear-gradient(135deg, #22402f, #1a3024) !important;
     color: white !important;
 }
+
+.bg-traffic {
+    background-image: url('/static/images/traffic-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.badge-congestion-0 { background-color: #28a745; }
+.badge-congestion-1 { background-color: #ffc107; }
+.badge-congestion-2 { background-color: #fd7e14; }
+.badge-congestion-3 { background-color: #dc3545; }
+
+
+.congestion-badge {
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.congestion-badge h3 {
+    margin-top: 10px;
+}
+
+.congestion-badge p {
+    margin-bottom: 0;
+}
+
+/* Individual color classes */
+.congestion-bg-0 { background-color: rgba(40, 167, 69, 0.13); border-color: #28a745; }
+.congestion-bg-0 h3 { color: #28a745; }
+
+.congestion-bg-1 { background-color: rgba(255, 193, 7, 0.13); border-color: #ffc107; }
+.congestion-bg-1 h3 { color: #ffc107; }
+
+.congestion-bg-2 { background-color: rgba(253, 126, 20, 0.13); border-color: #fd7e14; }
+.congestion-bg-2 h3 { color: #fd7e14; }
+
+.congestion-bg-3 { background-color: rgba(220, 53, 69, 0.13); border-color: #dc3545; }
+.congestion-bg-3 h3 { color: #dc3545; }

@@ -8,10 +8,10 @@
         <p><strong>Date & Time:</strong> {{ datetime }}</p>
         <p><strong>Weather:</strong> {{ prediction.weather }}</p>
     </div>
-    <div class="text-center p-4 rounded" style="background: {{ congestion_color }}20; border: 2px solid {{ congestion_color }}; margin-top: 20px;">
-        <h3 class="mt-2" style="color: {{ congestion_color }}">{{ congestion_text }}</h3>
-        <p class="mb-0">Congestion Level: {{ congestion_level }}/3</p>
-    </div>
+    <div class="text-center p-4 rounded congestion-bg-{{ congestion_level }}">
+    <h3 class="mt-2">{{ congestion_text }}</h3>
+    <p class="mb-0">Congestion Level: {{ congestion_level }}/3</p>
+</div>
     <div class="text-center mt-4">
         <h4>Estimated Travel Time</h4>
         {% with travel_time_min=travel_time|floatformat:0 %}

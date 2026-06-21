@@ -25,13 +25,7 @@
                     <td>{{ pred.weather }}</td>
                     <td>{{ pred.traffic_volume }}</td>
                     <td>
-                        <span class="badge" style="background-color: 
-                            {% if pred.predicted_congestion == 0 %}#28a745
-                            {% elif pred.predicted_congestion == 1 %}#ffc107
-                            {% elif pred.predicted_congestion == 2 %}#fd7e14
-                            {% else %}#dc3545{% endif %}">
-                            {{ pred.get_predicted_congestion_display }}
-                        </span>
+                        <span class="badge badge-congestion-{{ pred.predicted_congestion }}">{{ pred.get_predicted_congestion_display }}</span>
                     </td>
                     <td>
                         {% with time=pred.predicted_travel_time|floatformat:0 %}
