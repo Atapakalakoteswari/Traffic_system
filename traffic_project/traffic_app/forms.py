@@ -52,6 +52,12 @@ class TrafficPredictionForm(forms.ModelForm):
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if username.isdigit():
+            raise forms.ValidationError('Username cannot contain only numbers.')
+        return username
     
     class Meta:
         model = User
